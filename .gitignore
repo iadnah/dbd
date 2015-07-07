@@ -1,3 +1,4 @@
 *.exe
 dbd
 binaries/
+contrib/getdbd/builds/*

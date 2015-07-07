@@ -1,0 +1,7 @@
+###DISCLAIMER
+This code is not production ready. It's an alpha version written while drunk. It works,
+but a lot can be improved.
+
+###getdbd
+This script creates a web interface which allows a client to download a custom dbd, built
+on the hosting server.
