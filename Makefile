@@ -42,7 +42,9 @@ files = pel.c aes.c sha1.c doexec.c dbd.c
 help:
 	@echo "usage:"
 	@echo "  make unix         - Linux, NetBSD, FreeBSD, OpenBSD"
+	@echo "  make dietunix     - Linux, NetBSD, FreeBSD, OpenBSD with dietlibc"
 	@echo "  make unix32       - Linux, NetBSD, FreeBSD, OpenBSD 32-bit"
+	@echo "  make dietunix32   - Linux, NetBSD, FreeBSD, OpenBSD with dietlibc"
 	@echo "  make sunos        - SunOS (Solaris)"
 	@echo "  make win32        - native win32 console app (w/ Cygwin + MinGW)"
 	@echo "  make win32bg      - create a native win32 no-console app (w/ Cygwin + MinGW)"
@@ -65,7 +67,9 @@ help:
 none:
 	@echo "usage:"
 	@echo "  make unix         - Linux, NetBSD, FreeBSD, OpenBSD"
+	@echo "  make dietunix     - Linux, NetBSD, FreeBSD, OpenBSD with dietlibc"
 	@echo "  make unix32       - Linux, NetBSD, FreeBSD, OpenBSD 32-bit"
+	@echo "  make dietunix32   - Linux, NetBSD, FreeBSD, OpenBSD with dietlibc"
 	@echo "  make sunos        - SunOS (Solaris)"
 	@echo "  make win32        - native win32 console app (w/ Cygwin + MinGW)"
 	@echo "  make win32bg      - create a native win32 no-console app (w/ Cygwin + MinGW)"
@@ -88,8 +92,11 @@ none:
 unix: clean
 	$(CC) $(UNIX_CFLAGS) $(CFLAGS) -o $(out) $(files) $(UNIX_LDFLAGS) $(LDFLAGS)
 
+dietunix: clean
+	diet $(CC) $(UNIX_CFLAGS) $(CFLAGS) -o $(out) $(files) $(UNIX_LDFLAGS) $(LDFLAGS)
+
 unix32: clean
-	$(CC) $(UNIX32_CFLAGS) $(CFLAGS) -o $(out) $(files) $(UNIX_LDFLAGS) $(LDFLAGS)
+	diet $(CC) $(UNIX32_CFLAGS) $(CFLAGS) -o $(out) $(files) $(UNIX_LDFLAGS) $(LDFLAGS)
 
 sunos: clean
 	@echo "*** tested on SunOS 5.9 x86 and r220 ***"
