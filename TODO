@@ -3,5 +3,14 @@
 * PROFIT!
 
 All joking aside, once it's documented, easy for other tools to work with,
-and can easily build for most popular target environments focus will be
+and can easily built for most popular target environments focus will be
 shifted to creating tools that can utilize it.
+
+* Cloaking on Windows
+	This is currently a stub function.
+
+* Add debug detection / signal handling
+	DBD needs to be able to recognize when it's attached to by a debugger and act accordingly.
+
+* Runtime access through keyphrase
+	Option for DBD to only run when the built-in keyphrase is provided at runtime

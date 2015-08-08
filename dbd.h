@@ -25,6 +25,8 @@
  * entry in ps, netstat, etc) to "bash"
  * WARNING: Will remove other command-line variables, so only use it when hard
  * coding all variables into this header.
+ *
+ * @TODO: if we update the code to do this AFTER reading args we won't have this problem
  */
 #define CLOAK 0
 
