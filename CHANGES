@@ -1,3 +1,13 @@
+2015-08-08  Jason Thistlethwaite <iadnah@uplinklounge.com>
+
+	* : commit 5b9563d613d37ef502dafdca0ae5d0237f13c5c2 Author: Jason
+	Thistlethwaite <iadnah@uplinklounge.com> Date:	Sat Aug 8
+	01:35:00 2015 -0400
+	
+	* Makefile : Added option to build using dietlibc for UNIX targets.
+		glibc's implementation of strdup has a memory leak. Using dietlibc works around this
+		although it actually produces a larger binary.
+
 2013-06-08  Kyle Barnthouse <kbarnthouse@hephaestussec.com>
 
 	* : commit 916a8c96d379e26fdfe8aab59b4abf90152d89b1 Author: Kyle
