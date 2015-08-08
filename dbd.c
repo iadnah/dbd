@@ -365,11 +365,31 @@ int main(int argc, char **argv) {
                 }
                 break;
             case 'k':
-                aes_secret = strdup(optarg);
-                /* swab out the passphrase from argv (tested under glibc
-                   2.2.5, and NetBSD libc.so.12)
-                 */
-                memset(optarg, 0x20, strlen(optarg));
+		/* read a non-default key from the environment variable "DBD_KEY"
+		   and then clear DBD_KEY.
+
+		   This prevents the key from being logged on most command lines. The contents
+		   of DBD_KEY will still be visible through /proc/-/environ on Linux systems
+		   because the info in there is not updated from the initial stack. However,
+                   ptrace and other tools, when attaching to dbd, will not see the value of DBD_KEY
+
+		   @TODO: make the environment variable configurable through dbd.h
+
+		*/
+		if (strcmp(optarg, "env") == 0) {
+			aes_secret = strdup(getenv("DBD_KEY"));
+			unsetenv("DBD_KEY");
+		}
+		else {
+	                aes_secret = strdup(optarg);
+	                /* swab out the passphrase from argv (tested under glibc
+	                   2.2.5, and NetBSD libc.so.12)
+
+			@TODO: this is a security issue. This still inserts spaces in proc (on Linux) equal to the length
+                               of the key. This tells an attacker how long the keyphrase is.
+	                 */
+	                memset(optarg, 0x20, strlen(optarg));
+		}
                 break;
             case 'q':
                 if (quiet) {
